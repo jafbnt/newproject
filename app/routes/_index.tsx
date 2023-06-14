@@ -36,7 +36,7 @@ export default function Index() {
   return (
     <div className="h-full flex flex-row">
       <div
-        className={`h-full flex flex-col bg-white border-r shadow ${
+        className={`hidden md:flex  h-full flex-col bg-white border-r shadow   ${
           !isOpen ? `w-64` : `w-16`
         }`}
       >
@@ -95,14 +95,31 @@ export default function Index() {
         </div>
       </div>
       <div className="h-full w-full flex flex-col w">
-        <div className="h-16 flex flex-row justify-between items-center bg-white border-b shadow-sm">
-          <div></div>
+        <div className="h-16 flex flex-row md:justify-end justify-between items-center bg-white border-b shadow-sm">
+          <div className="flex flex-row justify-start items-center space-x-4 md:hidden">
+            <div className="relative group h-14 flex justify-center items-center">
+              <DynamicIcon
+                icn="IconMenu2"
+                cn="text-gray-600 w-6 h-6 ml-2 cursor-pointer"
+              />
+              <div className="absolute hidden group-hover:block top-12 left-2 bg-white p-2 w-56 border border-gray-100">
+                  <ul className="space-y-2">
+                    {menu.map((m)=>(
+                        <li className="flex  flex-row  rounded text-sm space-x-2 hover:bg-gray-100 hover:text-gray-800 text-gray-600 p-2 " key={m.label}>
+                          <DynamicIcon icn={m.icon} cn="w-5 h-5"/>
+                          <span>{m.label}</span>
+                        </li>
+                    ))}
+                  </ul>
+              </div>
+            </div>
+            <img className="h-8" src={logoxl} alt="Gedocs" />
+          </div>
           <div className="flex flex-row mr-4 space-x-4">
             <button
               type="button"
               className="rounded-full relative bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              
               <div className="absolute right-0 top-0">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
