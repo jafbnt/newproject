@@ -35,14 +35,14 @@ export default function Index() {
   const [isOpen, SetIsOpen] = useState(false);
 
   return (
-    <div className="h-full flex flex-row">
+    <div className="flex h-full flex-row">
       <div
-        className={`hidden md:flex  h-full flex-col bg-white border-r shadow   ${
+        className={`hidden h-full  flex-col border-r bg-white shadow lg:flex   ${
           !isOpen ? `w-64` : `w-16`
         }`}
       >
         <div
-          className={`relative flex  p-2 items-center h-16 bg-white ${
+          className={`relative flex  h-16 items-center bg-white p-2 ${
             !isOpen ? `justify-start` : `justify-start`
           }`}
         >
@@ -51,7 +51,7 @@ export default function Index() {
           </div>
           <div
             onClick={() => SetIsOpen(!isOpen)}
-            className="absolute -right-4 top-4 flex justify-center items-center bg-white border-gray-100 rounded-full p-2 w-7 h-7 border  shadow-md cursor-pointer text-gray-500 hover:text-gray-700  hover:bg-gray-100"
+            className="absolute -right-4 top-4 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-white  p-2 text-gray-500 shadow-md hover:bg-gray-100  hover:text-gray-700"
           >
             <DynamicIcon
               icn={`${!isOpen ? `IconChevronLeft` : `IconChevronRight`}`}
@@ -59,35 +59,35 @@ export default function Index() {
             />
           </div>
         </div>
-        <div className="h-full flex flex-col justify-between p-2">
-          <ul className="flex flex-col justify-center space-y-2 ml-1 select-none">
+        <div className="flex h-full flex-col justify-between p-2">
+          <ul className="ml-1 flex select-none flex-col justify-center space-y-2">
             {menu.map((m) => (
               <li
                 key={m.label}
-                className={`flex flex-row p-2 cursor-pointer group relative ${
-                  !isOpen ? `w-full` : `w-10`
-                }   rounded text-gray-500 border border-gray-200 hover:border-gray-400 hover:text-gray-700 hover:bg-gray-200  space-x-2 `}
+                className={`group relative flex cursor-pointer flex-row p-2 ${
+                  !isOpen ? `w-full` : `w-10 hover:scale-110`
+                }   space-x-2 rounded border border-gray-200 text-gray-500 duration-300 hover:border-gray-300   hover:bg-gray-100 hover:text-gray-600 `}
               >
                 <DynamicIcon icn={m.icon} cn="h-5 w-5" />
                 {!isOpen && <span className="text-sm">{m.label}</span>}
                 {isOpen && (
-                  <div className="absolute z-50  left-full top-1 py-1 px-2 bg-gray-500 text-white rounded opacity-0 text-sm group-hover:opacity-90 transition ease-in-out duration-200">
+                  <div className="absolute left-full  top-1 z-50 rounded bg-gray-500 px-2 py-1 text-sm text-white opacity-0 transition duration-200 ease-in-out group-hover:opacity-90">
                     {m.label}
                   </div>
                 )}
               </li>
             ))}
           </ul>
-          <ul className="flex flex-col justify-center space-y-2 ml-1 select-none">
+          <ul className="ml-1 flex select-none flex-col justify-center space-y-2">
             <li
-              className={`flex flex-row p-2 cursor-pointer group relative ${
+              className={`group relative flex cursor-pointer flex-row p-2 ${
                 !isOpen ? `w-full` : `w-10`
-              }   rounded text-gray-500 border border-gray-200 hover:border-gray-400 hover:text-gray-700 hover:bg-gray-200  space-x-2 `}
+              }   space-x-2 rounded border border-gray-200 text-gray-500 hover:border-gray-400 hover:bg-gray-200  hover:text-gray-700 `}
             >
               <DynamicIcon icn="IconAdjustmentsHorizontal" cn="h-5 w-5" />
               {!isOpen && <span className="text-sm">Configurações</span>}
               {isOpen && (
-                <div className="absolute z-50  left-full top-1 py-1 px-2 bg-gray-500 text-white rounded opacity-0 text-sm group-hover:opacity-90 transition ease-in-out duration-200">
+                <div className="absolute left-full  top-1 z-50 rounded bg-gray-500 px-2 py-1 text-sm text-white opacity-0 transition duration-200 ease-in-out group-hover:opacity-90">
                   Configurações
                 </div>
               )}
@@ -95,36 +95,39 @@ export default function Index() {
           </ul>
         </div>
       </div>
-      <div className="h-full w-full flex flex-col w">
-        <div className="h-16 flex flex-row md:justify-end justify-between items-center bg-white border-b shadow-sm">
-          <div className="flex flex-row justify-start items-center space-x-4 md:hidden">
-            <div className="relative group h-14 flex justify-center items-center">
+      <div className="flex h-full w-full flex-col">
+        <div className="flex h-16 flex-row items-center justify-between border-b bg-white shadow-sm lg:justify-end">
+          <div className="flex flex-row items-center justify-start space-x-4 lg:hidden">
+            <div className="group relative flex h-14 items-center justify-center">
               <DynamicIcon
                 icn="IconMenu2"
                 cn="text-gray-600 w-6 h-6 ml-2 cursor-pointer"
               />
-              <div className="absolute hidden group-hover:block top-12 left-2 bg-white p-2 w-56 border border-gray-100 shadow-sm rounded">
-                  <ul className="space-y-2">
-                    {menu.map((m)=>(
-                        <li className="flex  flex-row  rounded text-sm space-x-2 hover:bg-gray-100 hover:text-gray-800 text-gray-600 p-2 " key={m.label}>
-                          <DynamicIcon icn={m.icon} cn="w-5 h-5"/>
-                          <span>{m.label}</span>
-                        </li>
-                    ))}
-                  </ul>
+              <div className="absolute left-2 top-12 hidden w-56 rounded border border-gray-100 bg-white p-2 shadow-sm group-hover:block">
+                <ul className="space-y-2">
+                  {menu.map((m) => (
+                    <li
+                      className="flex  flex-row  space-x-2 rounded p-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-800 "
+                      key={m.label}
+                    >
+                      <DynamicIcon icn={m.icon} cn="w-5 h-5" />
+                      <span>{m.label}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <img className="h-8" src={logoxl} alt="Gedocs" />
           </div>
-          <div className="flex flex-row mr-4 space-x-4">
+          <div className="mr-4 flex flex-row space-x-4 ">
             <button
               type="button"
-              className="rounded-full relative bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               <div className="absolute right-0 top-0">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
                 </span>
               </div>
 
@@ -198,8 +201,8 @@ export default function Index() {
             </Menu>
           </div>
         </div>
-        <div className="h-full flex flex-row p-4 space-x-5">
-          <Outlet/>
+        <div className="flex h-full flex-row space-x-5 p-4">
+          <Outlet />
         </div>
       </div>
     </div>
